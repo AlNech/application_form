@@ -3,17 +3,17 @@ Native PHP(+PDO), MySQL, Jquery
 
 ## Пользователь phpMyAdmin:
 
-`
+```
 Login: user
 Password: password
-`
+```
+
 
 ## Запуск проекта:
 
 | Шаг | Команда               |
 |----|------------------------|
-| 1  | ` git clone https://github.com/AlNech/application_form.git  
-cd construction_company`        |
+| 1  | ` git clone https://github.com/AlNech/application_form.git  cd construction_company`        |
 | 2  | `docker-compose up -d`           |
 | 3  | Импортировать в бд dump.sql     |
 
