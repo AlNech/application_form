@@ -21,6 +21,7 @@ class ApplicationService
 
     public function createApplication(array $data)
     {
+        $data = array_map("htmlspecialchars", $data);
         // Создаем клиента
         if ($data['clientType'] === 'individual') {
             $client = new IndividualClient(

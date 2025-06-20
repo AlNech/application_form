@@ -70,7 +70,7 @@
             </div>
 
             <!-- Блок для юридического лица -->
-            <div id="legalClient" class="form-section client-section">
+            <div id="legalClient" class="form-section client-section hidden">
                 <h2>Данные руководителя</h2>
 
                 <div class="row">

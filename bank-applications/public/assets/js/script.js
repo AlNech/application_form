@@ -4,22 +4,22 @@ $(document).ready(function () {
         let isValid = true;
         const currentClientType = $('input[name="clientType"]:checked').val();
 
-        // Проверяем поля в зависимости от типа клиента
+        // Сначала удаляем required у всех полей неактивного клиента
         if (currentClientType === 'individual') {
-            $('#individualClient').find('[required]').each(function () {
-                if (!$(this).val()) {
-                    isValid = false;
-                    return false;
-                }
-            });
+            $('#legalClient').find('input').prop('required', false);
+            $('#individualClient').find('input').prop('required', true);
         } else {
-            $('#legalClient').find('[required]').each(function () {
-                if (!$(this).val()) {
-                    isValid = false;
-                    return false;
-                }
-            });
+            $('#individualClient').find('input').prop('required', false);
+            $('#legalClient').find('input').prop('required', true);
         }
+
+        // Проверяем только активные поля
+        $(`.client-section:not(.hidden) [required]`).each(function () {
+            if (!$(this).val()) {
+                isValid = false;
+                return false; // прерываем цикл при первой же ошибке
+            }
+        });
 
         // Обновляем состояние кнопки "Далее"
         if (isValid) {
@@ -42,8 +42,6 @@ $(document).ready(function () {
         const selectedType = $(this).val();
         $(`#${selectedType}Client`).removeClass('hidden');
         checkFormValidity();
-        $('.client-section [required]').prop('required', false);
-        $('.client-section:not(.hidden) [required]').prop('required', true);
     });
 
     // Переключение между типами продуктов
@@ -58,6 +56,14 @@ $(document).ready(function () {
     // Переход к следующему шагу
     $('#nextBtn').click(function () {
         if (checkFormValidity()) {
+            // Удаляем required у полей неактивного клиента перед переходом
+            const currentClientType = $('input[name="clientType"]:checked').val();
+            if (currentClientType === 'individual') {
+                $('#legalClient').find('[required]').prop('required', false);
+            } else {
+                $('#individualClient').find('[required]').prop('required', false);
+            }
+
             $('#step1').addClass('hidden');
             $('#step2').removeClass('hidden');
             $('.step').removeClass('active');

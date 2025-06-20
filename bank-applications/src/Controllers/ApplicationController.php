@@ -22,7 +22,8 @@ class ApplicationController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
-                $applicationId = $this->service->createApplication($_POST);
+                $data = array_map("trim", $_POST);
+                $applicationId = $this->service->createApplication($data);
                 header('Location: /success.php?id=' . $applicationId);
                 exit;
             } catch (Exception $e) {
