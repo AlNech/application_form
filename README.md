@@ -12,9 +12,10 @@ Password: password
 
 | Шаг | Команда               |
 |----|------------------------|
-| 1  | ` git clone https://github.com/AlNech/application_form.git  cd construction_company`        |
+| 1  | ` git clone https://github.com/AlNech/application_form.git  
+cd construction_company`        |
 | 2  | `docker-compose up -d`           |
-| 3  | Импортировать dump.sql     |
+| 3  | Импортировать в бд dump.sql     |
 
 
 ## Доступы
